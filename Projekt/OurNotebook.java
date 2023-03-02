@@ -25,7 +25,7 @@ public class OurNotebook {
         return model + " цвет: " + colore + " ОС: " + oSystem + " " + ram + "Gb, " + hdd + "Gb, " + cpu + ", " + serialNumber;
     }
 
-    public boolean equals(Object obj){
+    public boolean equalsOS(Object obj){
         if (this == obj){
             return true;
         }
@@ -33,7 +33,30 @@ public class OurNotebook {
             return false;
         }
         OurNotebook notebook = (OurNotebook) obj;
-        if (oSystem.equals(notebook.oSystem) && cpu.equals(notebook.cpu)){
+        if (oSystem.equals(notebook.oSystem)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public String getColore() {
+        return colore;
+    }
+    
+
+    public boolean equalsColore(Object obj){
+
+        System.out.println(obj);
+
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof OurNotebook)){
+            return false;
+        }
+        OurNotebook notebook = (OurNotebook) obj;
+        if (colore.equals(notebook.colore)){
             return true;
         }
         else{
@@ -41,7 +64,7 @@ public class OurNotebook {
         }
     }
 
-    public boolean equality(Object obj){
+    public boolean equalityRam(Object obj){
         if (this == obj){
             return true;
         }
@@ -49,7 +72,24 @@ public class OurNotebook {
             return false;
         }
         OurNotebook notebook = (OurNotebook) obj;
-        if ((ram == notebook.ram) && (hdd == notebook.hdd)){
+        if ((ram == notebook.ram)){
+            System.out.println("Blin");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public boolean equalityHdd(Object obj){
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof OurNotebook)){
+            return false;
+        }
+        OurNotebook notebook = (OurNotebook) obj;
+        if ((ram == notebook.ram)){
             return true;
         }
         else{
