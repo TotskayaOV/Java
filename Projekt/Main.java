@@ -9,7 +9,7 @@ import java.util.Set;
 
 
 public class Main {
-    public static OurNotebook userVois(OurNotebook notebookUser) {
+    public static void userVois(OurNotebook notebookUser, LinkedList list) {
             Scanner iScanner = new Scanner(System.in);
             System.out.printf("Какие параметры вы хотите видеть у своего ноутбука:\n1. Оперативная память\n2. Объем жесткого диска\n3. Предустановленная ОС\n4. цвет\nВведите номер пункта меню для выбора или введите 0: ");
             int userChoise = iScanner.nextInt();
@@ -19,62 +19,70 @@ public class Main {
                     System.out.printf("Введите желаемое количество Оперативной памяти (число): ");
                     int userRum = iScanner1.nextInt();
                     notebookUser.ram = userRum;
-                    userVois(notebookUser);
+                    list.set(1, true);
+                    userVois(notebookUser, list);
                     break;
                 case 2:
                     Scanner iScanner2 = new Scanner(System.in);
                     System.out.printf("Введите желаемый объем жесткого диска (число): ");
                     int userHdd = iScanner2.nextInt();
                     notebookUser.hdd = userHdd;
-                    userVois(notebookUser);
+                    list.set(2, true);
+                    userVois(notebookUser, list);
                     break;
                 case 3:
                     Scanner iScanner3 = new Scanner(System.in);
                     System.out.printf("Введите желаемую операционную систему: ");
                     String userOSystem = iScanner3.nextLine();
                     notebookUser.oSystem = userOSystem;
-                    userVois(notebookUser);
+                    list.set(3, true);
+                    userVois(notebookUser, list);
                     break;
                 case 4:
                     Scanner iScanner4 = new Scanner(System.in);
                     System.out.printf("Введите желаемый цвет ноутбука: ");
                     String userColore = iScanner4.nextLine();
                     notebookUser.colore = userColore;
-                    userVois(notebookUser);
+                    list.set(0, true);
+                    userVois(notebookUser, list);
                     break;
-                case 0:
-                    return notebookUser;
                 default:
                     break;
             }
             iScanner.close();
-            return notebookUser;
         }
 
 
-    public static LinkedList resultUserVois(OurNotebook not1, OurNotebook not2) {
-        LinkedList<Boolean> list = new LinkedList<>();
-        if (not2.equalsColore(not1)){
-            list.add(true);
-        } else {
-            list.add(false);
-        }   
-        if (not2.equalityRam(not1)){
-            list.add(true);
-        } else {
-            list.add(false);
-        } 
-        if (not2.equalityHdd(not1)){
-            list.add(true);
-        } else {
-            list.add(false);
-        } 
-        if (not2.equalsOS(not1)){
-            list.add(true);
-        } else {
-            list.add(false);
+    private static boolean sortByRam(OurNotebook param, OurNotebook param2){
+            if (param.ram >= param2.ram) {
+                    return true;
+                }else {
+                    return false;
+            }
+       }
+    
+    private static boolean sortByHdd(OurNotebook param, OurNotebook param2){
+        if (param.hdd >= param2.hdd) {
+                return true;
+            }else {
+                return false;
         }
-        return list;
+   }
+
+    private static boolean sortByColore(OurNotebook param, OurNotebook param2){
+        if ((param.colore).equals(param2.colore)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private static boolean sortByOsystem(OurNotebook param, OurNotebook param2){
+        if ((param.oSystem).equals(param2.oSystem)) {
+            return true;
+        }else {
+            return false;
+    }
     }
 
     /**
@@ -93,8 +101,13 @@ public class Main {
         OurNotebook notebook4 = new OurNotebook("VDFHD05667991", "Turbo", "black", 64, 512, "Linux", "Core i7");
         OurNotebook notebook5 = new OurNotebook("12HD09FG67948", "GMV500", "pink", 32, 256, "Windows", "Core i5");
         OurNotebook notebook6 = new OurNotebook("BMFGW85679041", "GMV500", "pink", 32, 256, "Windows", "Core i5");
-        OurNotebook notebook7 = new OurNotebook("QGHD098567945", "GMV500", "black", 32, 256, "Linux", "Core i5");
+        OurNotebook notebook7 = new OurNotebook("QGHD098567945", "GMV500", "black", 32, 256, "Linux", "Core i3");
         OurNotebook notebook8 = new OurNotebook("JKLD011567444", "GMV500", "black", 32, 256, "Linux", "Core i5");
+        OurNotebook notebook9 = new OurNotebook("JKLD011534548", "GameKiller", "black", 32, 256, "Linux", "Core i3");
+        OurNotebook notebook10 = new OurNotebook("TKLD018657440", "GMV500", "black", 2, 124, "Linux", "Core i5");
+        OurNotebook notebook11 = new OurNotebook("HG56711567444", "GMV400", "green", 32, 256, "Windows", "Core i5");
+        OurNotebook notebook12 = new OurNotebook("BNV0115645454", "GMV100", "white", 128, 512, "Linux", "Core i7");
+        OurNotebook notebook13 = new OurNotebook("PO849934JH993", "GameKiller", "black", 16, 256, "Windows", "Core i5");
 
         set.add(notebook1);
         set.add(notebook2);
@@ -104,107 +117,82 @@ public class Main {
         set.add(notebook6);
         set.add(notebook7);
         set.add(notebook8);
+        set.add(notebook9);
+        set.add(notebook10);
+        set.add(notebook11);
+        set.add(notebook12);
+        set.add(notebook13);
 
-        OurNotebook notebookDefault = new OurNotebook("default", "default", "default", 0, 0, "default", "default");
         OurNotebook notebookUserchoise = new OurNotebook("default", "default", "default", 0, 0, "default", "default");
-        userVois((OurNotebook) notebookUserchoise);
-        LinkedList<Boolean> markerList = resultUserVois(notebookDefault, notebookUserchoise);
+        LinkedList<Boolean> list = new LinkedList<>();
+        list.add(false);
+        list.add(false);
+        list.add(false);
+        list.add(false);
+        userVois((OurNotebook) notebookUserchoise, list);
         Set<OurNotebook> setResult = new HashSet<>();
 
         Iterator<OurNotebook> iterator = set.iterator();
         while (iterator.hasNext()) {
             OurNotebook element = iterator.next();
-            if (markerList.get(0)) {
-                if (markerList.get(1)) {
-                    if (markerList.get(2)){
-                        if (markerList.get(3)){ //не 0 не 1 не 2 не 3
-                            break;
-                            }
-                        else {
-                            if (element.equalsOS(notebookUserchoise)){ //не 0 не 1 не 2 а 3
-                                setResult.add(element);
-                            }
-                        }
-                    } else {
-                        if (markerList.get(3)){ //не 0 не 1 а 2 не 3
-                            if (element.equalityHdd(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } else {                    //не 0 не 1 а 2 а 3
-                            if (element.equalityHdd(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        }
-                    }  
-                } else {
-                    if (markerList.get(2)){
-                        if (markerList.get(3)){ //не 0 а 1 не 2 не 3
-                            if (notebookUserchoise.equalityRam(element)){
-                                setResult.add(element);
-                            }
-                        } else {
-                                if (element.equalityRam(notebookUserchoise) && element.equalsOS(notebookUserchoise)){ //не 0 a 1 не 2 а 3
-                                    setResult.add(element);
-                                }
-                        } 
-                    } else {                                    
-                        if (markerList.get(3)){         //не 0 a 1 а 2 не 3
-                            if (notebookUserchoise.equalityRam(element) && element.equalityHdd(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } else {                                 //не 0 a 1 а 2 a 3
-                                if (element.equalityRam(notebookUserchoise) && element.equalsOS(notebookUserchoise) && element.equalityHdd(notebookUserchoise)){ 
-                                    setResult.add(element);
-                                }
-                        }
-                    }
+            if (list.get(0) && list.get(1) && list.get(2) && list.get(3)){
+                if (element.equalityHdd(notebookUserchoise) && element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
+                    setResult.add(element);
                 }
-            } else {                
-                if (markerList.get(1)) {            //0 не 1 не 2 не 3
-                    if (markerList.get(2)){         //0 не 1 не 2 не 3
-                        if (markerList.get(3)){     //0 не 1 не 2 не 3
-                            if (element.equalsColore(notebookUserchoise)){
-                                setResult.add(element);
-                            }                            
-                        } else {                            //0 не 1 не 2 а 3
-                            if (element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        }
-                    } else {
-                        if (markerList.get(3)){     //0 не 1 а 2 не 3
-                            if (element.equalsColore(notebookUserchoise) && element.equalityHdd(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } else {                            //0 не 1 а 2 а 3
-                            if (element.equalityHdd(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
-                                setResult.add(element);           
-                            }
-                        }
-                    }
-                } else {
-                    if (markerList.get(2)){         //0 а 1 не 2 не 3
-                        if (markerList.get(3)){     //0 а 1 не 2 не 3
-                            if (element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } else {                            //0 а 1 не 2 а 3
-                            if (element.equalityHdd(notebookUserchoise) && element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } 
-                    } else {                                //0 а 1 a 2 не 3
-                        if (markerList.get(3)){      //0 а 1 a 2 не 3
-                            if (element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalityHdd(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } else {                            //0 а 1 не 2 а 3
-                            if (element.equalityHdd(notebookUserchoise) && element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
-                                setResult.add(element);
-                            }
-                        } 
-                    }
+            } else if (list.get(1) && list.get(0) && list.get(2) && !(list.get(3))){
+                if (element.equalityRam(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalityHdd(notebookUserchoise)){
+                setResult.add(element);
                 }
+            } else if (list.get(3) && list.get(0) && list.get(2) && !(list.get(1))){
+                if (element.equalityHdd(notebookUserchoise) && element.equalsColore(notebookUserchoise) && element.equalsOS(notebookUserchoise)){
+                setResult.add(element);
+                }         
+            } else if (list.get(3) && list.get(1) && list.get(2) && !(list.get(0))){
+                if (element.equalityRam(notebookUserchoise) && element.equalsOS(notebookUserchoise) && element.equalityHdd(notebookUserchoise)){ 
+                setResult.add(element);
+                }
+            } else if (list.get(0) && list.get(1) && !(list.get(3)) && !(list.get(2))){
+                if (sortByRam(element, notebookUserchoise) && sortByColore(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(0) && list.get(2) && !(list.get(1)) && !(list.get(3))){ 
+                if (sortByColore(element, notebookUserchoise) && sortByHdd(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(2) && list.get(1) && !(list.get(0)) && !(list.get(3))){
+                if (sortByRam(element, notebookUserchoise) && sortByHdd(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(0) && list.get(3) && !(list.get(1)) && !(list.get(2))){ 
+                if (sortByColore(element, notebookUserchoise) && sortByOsystem(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(3) && list.get(1) && !(list.get(0)) && !(list.get(2))){ 
+                if (sortByRam(element, notebookUserchoise) && sortByOsystem(element, notebookUserchoise)){ 
+                setResult.add(element);
+                }
+            } else if (list.get(2) && list.get(3) && !(list.get(1)) && !(list.get(0))){ 
+                if (sortByHdd(element, notebookUserchoise) && sortByOsystem(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(0) && !(list.get(1)) && !(list.get(2)) && !(list.get(3))){
+                if (sortByColore(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(1) && !(list.get(0)) && !(list.get(2)) && !(list.get(3))){
+                if (sortByRam(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(2) && !(list.get(1)) && !(list.get(0)) && !(list.get(3))){ 
+                if (sortByHdd(element, notebookUserchoise)){
+                setResult.add(element);
+                }
+            } else if (list.get(3) && !(list.get(1)) && !(list.get(2)) && !(list.get(0))){ 
+                if (sortByOsystem(element, notebookUserchoise)){ 
+                setResult.add(element);
+                }
+            } else {
+                break;
             }
         }            
         int count = 1;

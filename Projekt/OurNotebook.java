@@ -46,9 +46,6 @@ public class OurNotebook {
     
 
     public boolean equalsColore(Object obj){
-
-        System.out.println(obj);
-
         if (this == obj){
             return true;
         }
@@ -73,7 +70,6 @@ public class OurNotebook {
         }
         OurNotebook notebook = (OurNotebook) obj;
         if ((ram == notebook.ram)){
-            System.out.println("Blin");
             return true;
         }
         else{
@@ -82,20 +78,21 @@ public class OurNotebook {
     }
 
     public boolean equalityHdd(Object obj){
-        if (this == obj){
-            return true;
-        }
-        if (!(obj instanceof OurNotebook)){
-            return false;
-        }
+        // if (this == obj){
+        //     return true;
+        // }
+        // if (!(obj instanceof OurNotebook)){
+        //     return false;
+        // }
         OurNotebook notebook = (OurNotebook) obj;
-        if ((ram == notebook.ram)){
+        if ((hdd >= notebook.hdd)){
             return true;
         }
         else{
             return false;
         }
     }
+
 
 }
 
