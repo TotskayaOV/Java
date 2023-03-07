@@ -2,7 +2,7 @@ package Homework21;
 
 
 public class Programm {
-
+    
     static void showStocks(Product [] goods){
         System.out.println("-------Товары на складе-------\n");
         int itemNumbering = 1;
