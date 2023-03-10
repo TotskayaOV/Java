@@ -137,7 +137,6 @@ public class Menu {
             System.out.printf("Введите порядковый номер: ");
             Integer choiseAnimal = iScanner22.nextInt();
             Animal thisAnimal = zoo.get(choiseAnimal-1);
-            thisAnimal.toString();
             if (thisAnimal instanceof Fly){
                 Scanner iScanner23 = new Scanner(System.in);
                 System.out.printf("\nВы хотите узнать как летает эта птица?\n1. да\n2. нет\nВведите число: ");
@@ -159,6 +158,14 @@ public class Menu {
             Integer userChoiseVoice = iScanner24.nextInt();
             if (userChoiseVoice == 1){
                 thisAnimal.voice();
+            }
+            Scanner iScanner26 = new Scanner(System.in);
+            System.out.printf("\nВы хотите узнать данные этого животного?\n1. да\n2. нет\nВведите число: ");
+            Integer userChoiseThisAnimal = iScanner26.nextInt();
+            if (userChoiseThisAnimal == 1){
+                System.out.println();
+                System.out.println(thisAnimal.toString());
+                System.out.println();
             }
         }
     }
