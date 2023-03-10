@@ -146,7 +146,7 @@ public class Menu {
                 }
             }
             Scanner iScanner24 = new Scanner(System.in);
-            System.out.printf("Вы хотите услышать его голос?\n1. да\n2. нет\nВведите число: ");
+            System.out.printf("\nВы хотите услышать его голос?\n1. да\n2. нет\nВведите число: ");
             Integer userChoiseVoice = iScanner24.nextInt();
             if (userChoiseVoice == 1){
                 thisAnimal.voice();

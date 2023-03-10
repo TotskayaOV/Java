@@ -1,9 +1,9 @@
 package Homework22;
 
-public class Stork extends Bird {
+public class Stork extends Bird implements Fly {
 
-    public Stork(Double growth, Double weight, String eyeColor, Double flightAltitude) {
-        super(growth, weight, eyeColor, flightAltitude);
+    protected Stork(Double growth, Double weight, String eyeColor) {
+        super(growth, weight, eyeColor, 3300.0);
     }
 
     public void voice() {
@@ -11,7 +11,7 @@ public class Stork extends Bird {
     }
 
     public void fly(){
-        System.out.printf("Я лечу на %d метрах, где %d - высота полета", flightAltitude, flightAltitude);
+        System.out.printf("Я лечу на %.2f метрах, где %.2f - высота полета", getFlightAltitude(), getFlightAltitude());
     }
 
     @Override

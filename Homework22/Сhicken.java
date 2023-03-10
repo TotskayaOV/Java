@@ -1,9 +1,9 @@
 package Homework22;
 
-public class Сhicken extends Bird {
+public class Сhicken extends Bird implements Fly{
 
-    public Сhicken(Double growth, Double weight, String eyeColor, Double flightAltitude) {
-        super(growth, weight, eyeColor, flightAltitude);
+    public Сhicken(Double growth, Double weight, String eyeColor) {
+        super(growth, weight, eyeColor, 3.5);
     }
 
     public void voice() {
@@ -11,7 +11,7 @@ public class Сhicken extends Bird {
     }
 
     public void fly(){
-        System.out.printf("Я лечу на %d метрах, где %d - высота полета", flightAltitude, flightAltitude);
+        System.out.printf("Я лечу на %.2f метрах, где %.2f - высота полета", getFlightAltitude(), getFlightAltitude());
     }
 
     @Override
