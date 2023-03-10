@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-
 public class Menu {
 
     public static void AllPrint(ArrayList<Animal> zoo){
@@ -14,14 +13,18 @@ public class Menu {
             System.out.println(count + ". " + element);
             count += 1;
         }
+        System.out.println();
     }
+
 
     public static void AllVoice(ArrayList<Animal> zoo){
         System.out.println("\n-------Все животные привестствуют вас!-------\n");
         for (Animal element: zoo){
             element.voice();;
         }
+        System.out.println();
     }
+
 
     public static void NewAnimal(ArrayList<Animal> zoo){
         Scanner iScanner3 = new Scanner(System.in);
@@ -94,20 +97,17 @@ public class Menu {
                 Animal tiger = new Tiger(growth, weight, eyeColor, habitat, discoveryDate); 
                 zoo.add(tiger);
             }
-
         } else if (animalChoise == 5 | animalChoise == 6){
-            Scanner iScanner18 = new Scanner(System.in);
-            System.out.printf("введите высоту полета птицы: ");
-            Double flightAltitude = iScanner18.nextDouble();
             if (animalChoise == 5){
-                Animal chicken = new Сhicken(growth, weight, eyeColor, flightAltitude); 
+                Animal chicken = new Сhicken(growth, weight, eyeColor); 
                 zoo.add(chicken);
             } else {
-                Animal stork = new Stork(growth, weight, eyeColor, flightAltitude); 
+                Animal stork = new Stork(growth, weight, eyeColor); 
                 zoo.add(stork);
             }
         }        
     }
+
 
     public static void DelAnimal(ArrayList<Animal> zoo){
         Scanner iScanner19 = new Scanner(System.in);
@@ -118,11 +118,12 @@ public class Menu {
             DelAnimal(zoo);
         } else {
             Scanner iScanner20 = new Scanner(System.in);
-            System.out.printf("Введите порядковый номер животного, которое хотите забрать: ");
+            System.out.printf("Введите порядковый номер животного, которое хотите забрать\n(Внимание! Держать диких животных дома опасно!): ");
             Integer choise_del = iScanner20.nextInt();
             zoo.remove(choise_del-1);
         }
     }
+
 
     public static void OneAnimal(ArrayList<Animal> zoo){
         Scanner iScanner21 = new Scanner(System.in);
@@ -139,10 +140,18 @@ public class Menu {
             thisAnimal.toString();
             if (thisAnimal instanceof Fly){
                 Scanner iScanner23 = new Scanner(System.in);
-                System.out.printf("Вы хотите узнать как летает эта птица?\n1. да\n2. нет\nВведите число: ");
+                System.out.printf("\nВы хотите узнать как летает эта птица?\n1. да\n2. нет\nВведите число: ");
                 Integer userChoiseFly = iScanner23.nextInt();
                 if (userChoiseFly == 1){
                     ((Fly) thisAnimal).fly();
+                }
+            }
+            if (thisAnimal instanceof ShowAffection){
+                Scanner iScanner25 = new Scanner(System.in);
+                System.out.printf("\nВы хотите погладить %s?\n1. да\n2. нет\nВведите число: ", ((Pet) thisAnimal).getNickName());
+                Integer userChoiseAff = iScanner25.nextInt();
+                if (userChoiseAff == 1){
+                    ((ShowAffection) thisAnimal).showAffection();
                 }
             }
             Scanner iScanner24 = new Scanner(System.in);
@@ -152,12 +161,12 @@ public class Menu {
                 thisAnimal.voice();
             }
         }
-
     }
+
 
     public static void userVois(ArrayList<Animal> zoo) {
         Scanner iScanner = new Scanner(System.in);
-        System.out.printf("Что вы хотите сделать?\n1. Узнать какие животные уже есть в зоопарке.\n2. Услышать голоса животных в зоопарке.\n3. Поселить животное в зоопарк.\n4. Забрать животное из зоопарка.\n5. Поработать с отдельным животным в зоопарке.\nВведите пункт меню: ");
+        System.out.printf("Что вы хотите сделать?\n1. Узнать какие животные уже есть в зоопарке.\n2. Услышать голоса животных в зоопарке.\n3. Поселить животное в зоопарк.\n4. Забрать животное из зоопарка.\n5. Поработать с отдельным животным в зоопарке.\nВведите пункт меню или 0 для выхода из программы: ");
         int userChoise = iScanner.nextInt();
         switch (userChoise) {
             case 1:

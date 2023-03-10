@@ -1,6 +1,6 @@
 package Homework22;
 
-public class Cat extends Pet {    
+public class Cat extends Pet implements ShowAffection {    
     protected Boolean balding;
     
     public Cat(Double growth, Double weight, String eyeColor, String nicknamePet, String breed, String vaccinations,
@@ -13,6 +13,12 @@ public class Cat extends Pet {
     public void voice() {
         System.out.println("Мряяяу!");;
     }
+
+    public void showAffection() {
+        System.out.println("Кот трется об ноги: Мрр мрр мрр");
+    }
+
+
 
     @Override
     public String toString() {

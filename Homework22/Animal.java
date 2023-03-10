@@ -17,17 +17,19 @@ public abstract class Animal {
     private Double weight;
     private String eyeColor;
 
+
     protected Animal(Double growth, Double weight, String eyeColor){
         this.growth = growth;
         this.weight = weight;
         this.eyeColor = eyeColor;
     }
     
+
     public abstract void voice();
+
 
     @Override
     public String toString() {
         return "рост: " + growth + ", вес: " + weight + ", цвет глаз: " + eyeColor;
     }
-
 }

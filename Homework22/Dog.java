@@ -5,7 +5,7 @@ package Homework22;
 // и методом:
 // 3.2 Дрессировать
 
-public class Dog extends Pet {
+public class Dog extends Pet implements ShowAffection {
     protected Boolean training;
 
     public Dog(Double growth, Double weight, String eyeColor, String nicknamePet, String breed, String vaccinations,
@@ -18,6 +18,11 @@ public class Dog extends Pet {
     public void voice() {
         System.out.println("Гав ав!");;
     }
+
+    public void showAffection() {
+        System.out.println("Собака трется об ноги: Урррр");
+    }
+
 
     @Override
     public String toString() {

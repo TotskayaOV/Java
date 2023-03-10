@@ -15,13 +15,15 @@ public abstract class Pet extends Animal{
         this.coatColor = coatColor;
         this.birthdate = birthdate;
     }
-    
 
-    public void showAffection() {
-        System.out.println("Проявляет ласку: Фрр фрр фрр");
-    }
 
     public abstract void voice();
+ 
+    
+    public String getNickName() {
+        return nicknamePet;
+    }
+
 
     @Override
     public String toString() {
