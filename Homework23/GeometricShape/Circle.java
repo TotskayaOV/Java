@@ -25,7 +25,7 @@ public class Circle extends ClosedLine implements Circumference{
 
     @Override
     public String toString() {
-        return "радиус круга = " + radius;
+        return "Радиус круга = " + radius;
     }
 
     public void setRadius(double radius) {
