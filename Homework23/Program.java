@@ -22,9 +22,9 @@ public class Program {
 
         System.out.println("\nДо сортировки:");
         figures.AllPrint();
-        System.out.println("\nПосле сортировки:");
+        System.out.println("\nПосле сортировки (полные данные):");
         figures.sortByArea();
-        figures.AllPrint();
+        figures.AllMathPrint();
         System.out.println("\nПосле удаления пятой фигуры:");
         figures.remove(4);
         figures.AllPrint();

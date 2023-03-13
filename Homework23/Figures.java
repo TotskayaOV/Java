@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import Homework23.GeometricShape.Base.Shape;
+import Homework23.Interface.Circumference;
+import Homework23.Interface.Perimetr;
 
 public class Figures {
     private final ArrayList<Shape> figures = new ArrayList<>();
@@ -12,6 +14,21 @@ public class Figures {
         int count = 1;
         for (Shape element: figures){
             System.out.println(count + ". " + element);
+            count += 1;
+        }
+        System.out.println();
+    }
+
+    public void AllMathPrint(){
+        int count = 1;
+        for (Shape element: figures){
+            System.out.println(count + ". " + element);
+            if (element instanceof Perimetr){
+                System.out.printf("\tПериметр фигуры: %.2f, площадь фигуры: %.2f.\n", ((Perimetr) element).perimetr(), element.area());
+            }
+            if (element instanceof Circumference){
+                System.out.printf("\tОкружность фигуры: %.2f, площадь фигуры: %.2f.\n", ((Circumference) element).circumference(), element.area());
+            }
             count += 1;
         }
         System.out.println();
